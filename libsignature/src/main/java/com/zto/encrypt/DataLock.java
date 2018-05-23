@@ -1,10 +1,10 @@
-package com.zto.libsignature;
+package com.zto.encrypt;
 
 /**
  * Created by Scott on 2018/5/22.
  */
 
-public class SignatureUtil {
+public class DataLock {
     static {
         // load library
         try {

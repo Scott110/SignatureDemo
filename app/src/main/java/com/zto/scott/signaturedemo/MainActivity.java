@@ -1,10 +1,8 @@
 package com.zto.scott.signaturedemo;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.zto.libsignature.SignatureUtil;
+import com.zto.encrypt.DataLock;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str = new SignatureUtil().stringFromJNI();
+                String str = new DataLock().stringFromJNI();
                 Toast.makeText(getApplicationContext(), "JNI参数：" + str, Toast.LENGTH_SHORT).show();
 
             }
@@ -39,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         btn01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str = new SignatureUtil().getSignatureStr("我很好");
+                String str = new DataLock().getSignatureStr("我很好");
                 Toast.makeText(getApplicationContext(), "So签名参数：" + str, Toast.LENGTH_SHORT).show();
             }
         });

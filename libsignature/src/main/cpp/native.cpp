@@ -1,9 +1,7 @@
-
-#include "include/data_lock.h"
+#include "include/native.h"
 
 //Release 签名MD5值
 const char *RELEASE_SIGN_MD5 = "0DE8CE26215E9076009FE87C0BF2829B";
-
 
 
 
@@ -254,23 +252,6 @@ void ToHexStr(const char *source, char *dest, int sourceLen) {
     }
 }
 
-/*extern "C"
-JNIEXPORT jstring JNICALL Java_com_zto_libsignature_SignatureUtil_stringFromJNI(JNIEnv *env, jobject){
-    std::string hello = "测试Jni原始";
-    return env->NewStringUTF(hello.c_str());
-}
-
-extern "C"
-JNIEXPORT jstring JNICALL Java_com_zto_libsignature_SignatureUtil_getSignatureStr(JNIEnv *env, jobject obj, jstring str){
-    std::string hello;
-    bool b = verifySign(env, obj);
-    if (b) {
-        hello = "原始匹配成功";
-    } else {
-        hello = "原始匹配失败";
-    }
-    return env->NewStringUTF(hello.c_str());
-}*/
 
 jstring JNICALL getString(JNIEnv *env, jobject) {
     std::string hello = "测试Jni555";
@@ -282,9 +263,9 @@ jstring  getSig(JNIEnv *env, jobject obj, jstring str) {
     std::string hello;
     bool b = verifySign(env, obj);
     if (b) {
-        hello = "匹配成功";
+        hello = "匹配成功11111";
     } else {
-        hello = "匹配失败";
+        hello = "匹配失败eeeee";
     }
     return env->NewStringUTF(hello.c_str());
 }
