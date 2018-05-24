@@ -4,7 +4,6 @@
 const char *RELEASE_SIGN_MD5 = "0DE8CE26215E9076009FE87C0BF2829B";
 
 
-
 //获取app包名
 int PidToName(int pid, char *lpOutBuf) {
     if (lpOutBuf == NULL) {
@@ -253,13 +252,13 @@ void ToHexStr(const char *source, char *dest, int sourceLen) {
 }
 
 
-jstring JNICALL getString(JNIEnv *env, jobject) {
+jstring getString(JNIEnv *env, jobject) {
     std::string hello = "测试Jni555";
     return env->NewStringUTF(hello.c_str());
 }
 
 
-jstring  getSig(JNIEnv *env, jobject obj, jstring str) {
+jstring getSig(JNIEnv *env, jobject obj, jstring str) {
     std::string hello;
     bool b = verifySign(env, obj);
     if (b) {
@@ -271,11 +270,10 @@ jstring  getSig(JNIEnv *env, jobject obj, jstring str) {
 }
 
 
-
 //native 方法集合
 static JNINativeMethod gMethods[] = {
-        { "stringFromJNI", "()Ljava/lang/String;", (void *)getString},
-        { "getSignatureStr", "(Ljava/lang/String;)Ljava/lang/String;", (void *)getSig},
+        {"stringFromJNI",   "()Ljava/lang/String;",                   (void *) getString},
+        {"getSignatureStr", "(Ljava/lang/String;)Ljava/lang/String;", (void *) getSig},
 };
 
 
@@ -307,15 +305,15 @@ static int registerNatives(JNIEnv *env) {
 *
 * Returns the JNI version on success, -1 on failure.
 */
-JNIEXPORT int JNICALL JNI_OnLoad(JavaVM *vm,void *reserved) {
-    JNIEnv *env=NULL;
-    if (vm->GetEnv((void **) &env,JNI_VERSION_1_6) != JNI_OK){
+JNIEXPORT int JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
+    JNIEnv *env = NULL;
+    if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) != JNI_OK) {
         return JNI_ERR;
     }
 
     assert(env != NULL);
 
-    if(!registerNatives(env)){
+    if (!registerNatives(env)) {
         return JNI_ERR;
     }
 
